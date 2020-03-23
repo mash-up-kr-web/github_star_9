@@ -1,11 +1,17 @@
 <template>
   <div id="result">
-    result
+    {{ userName }}
   </div>
 </template>
 
 <script>
 export default {
   name: 'Result',
+  computed: {
+    userName() {
+      return this.$store.state.userName;
+    },
+  },
+
 };
 </script>
