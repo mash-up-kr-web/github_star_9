@@ -36,7 +36,7 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.$store.state.userName = this.userName;
+      alert(this.userName);
     },
   },
 };
