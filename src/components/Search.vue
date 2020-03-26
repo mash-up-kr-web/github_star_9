@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     onSubmit(evt) {
+      this.$emit('search', this.userName);
       evt.preventDefault();
-      this.$store.state.userName = this.userName;
     },
   },
 };

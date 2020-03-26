@@ -1,14 +1,15 @@
 <template>
   <div id="result">
-    <p v-if="isEmptyUserName()">
-      메시지를 입력해주세요.
+    <p v-show="isEmptyUserName">
+      검색어를 입력해주세요.
     </p>
-    <div v-else>
-      <p v-if="!isVaildUserName()">
-        일치하는 사용자가 존재하지 않습니다.
-      </p>
-      <repo-list v-else />
-    </div>
+    <p v-show="!isEmptyUserName && !isVaildUserName">
+      일치하는 사용자가 없습니다.
+    </p>
+    <repo-list
+      :user-name="userName"
+      v-show="!isEmptyUserName && isVaildUserName"
+    />
   </div>
 </template>
 
@@ -17,35 +18,38 @@ import RepoList from './RepoList.vue';
 
 export default {
   name: 'Result',
-  data() {
-    return {
-      vaildUserName: null,
-    };
+  props: {
+    userName: String,
   },
   components: {
     RepoList,
   },
-  computed: {
-    userName() {
-      return this.$store.state.userName;
-    },
+  data() {
+    return {
+      comment: String,
+      isFetchSuccess: false,
+    };
   },
-  methods: {
+  updated() {
+    this.fecthUserName();
+  },
+  computed: {
     isEmptyUserName() {
       if (this.userName) return false;
       return true;
     },
     isVaildUserName() {
-      this.fecthUserName();
-      return this.vaildUserName;
+      return this.isFetchSuccess;
     },
+  },
+  methods: {
     fecthUserName() {
       this.$axios.get(`https://api.github.com/users/${this.userName}`)
         .then(() => {
-          this.vaildUserName = true;
+          this.isFetchSuccess = true;
         })
         .catch(() => {
-          this.vaildUserName = false;
+          this.isFetchSuccess = false;
         });
     },
   },
