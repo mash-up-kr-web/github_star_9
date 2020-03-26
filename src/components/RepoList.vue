@@ -22,8 +22,12 @@ export default {
       repoNameList: [],
     };
   },
-  updated() {
-    this.fecthRepoList();
+  watch: {
+    userName: {
+      handler() {
+        this.fecthRepoList();
+      },
+    },
   },
   computed: {
     isEmptyRepoList() {

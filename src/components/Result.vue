@@ -30,8 +30,12 @@ export default {
       isFetchSuccess: false,
     };
   },
-  updated() {
-    this.fecthUserName();
+  watch: {
+    userName: {
+      handler() {
+        this.fecthUserName();
+      },
+    },
   },
   computed: {
     isEmptyUserName() {
