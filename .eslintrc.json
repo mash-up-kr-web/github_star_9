@@ -23,12 +23,27 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "import", "react-hooks"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "import",
+    "react-hooks",
+    "import-helpers"
+  ],
   "rules": {
     "quotes": [2, "double"],
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
     "@typescript-eslint/explicit-function-return-type": "off",
-    "import/extensions": "off"
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": ["module", ["/^~/contexts/"], ["parent", "sibling", "index"]],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ]
   },
   "settings": {
     "import/parsers": {
