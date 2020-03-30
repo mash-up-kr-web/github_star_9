@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&display=swap');
+
 ::-webkit-scrollbar {
   display: none;
 }
 
 * {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   text-decoration: none;
   box-sizing: border-box;
   margin: 0;
@@ -20,21 +22,13 @@ body {
   font-size: 16px;
 }
 
-header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: 14vh;
-  min-height: 5rem;
-}
-
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 5rem;
-  height: 80vh;
+  height: 100vh;
 }
 
 button {
