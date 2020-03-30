@@ -6,8 +6,8 @@ export default function SearchResultList({ resultItems }) {
     <ul className="search_result">
       {resultItems &&
         resultItems.map(({ id, ...props }) => (
-          <li>
-            <SearchResultListItem {...props} key={id} />
+          <li key={id}>
+            <SearchResultListItem {...props} id={id} />
           </li>
         ))}
     </ul>
