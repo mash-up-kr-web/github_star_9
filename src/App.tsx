@@ -1,7 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 
-const App: FunctionComponent = () => {
-  return <div>hello</div>;
+import SearchPage from '~/components/search/SearchPage';
+
+const App: React.FC = () => {
+  return <SearchPage />;
 };
 
 export default App;
