@@ -1,0 +1,20 @@
+.search_result_item {
+  & {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 5rem;
+    width: 60vw;
+
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(118, 118, 118);
+  }
+
+  & .item_name {
+    font-size: 1.5rem;
+    font-weight: 200;
+    color: #313131;
+  }
+}
