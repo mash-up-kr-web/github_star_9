@@ -23,10 +23,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
-    modules: ['node_modules'],
+    modules: ['node_modules', path.resolve(__dirname, '../src')],
     alias: {
       '@atoms': path.resolve(__dirname, '../src/components/atoms'),
       '@molecules': path.resolve(__dirname, '../src/components/molecules'),
+      '@organisms': path.resolve(__dirname, '../src/components/organisms'),
     },
   },
   module: {
