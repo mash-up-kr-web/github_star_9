@@ -22,4 +22,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/prop-types': 0,
   },
+  setting: {
+    'import/resolver': 'webpack',
+  },
 };
