@@ -1,8 +1,11 @@
 import React from 'react';
+import { GitStarRanking } from '@organisms';
 
-const App = () => (
-  <>
-    <h1>react</h1>
-  </>
-);
+const App = () => {
+  return (
+    <main>
+      <GitStarRanking />
+    </main>
+  );
+};
 export default App;
