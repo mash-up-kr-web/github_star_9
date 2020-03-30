@@ -1,0 +1,12 @@
+.item_count_wrapper {
+  & {
+    line-height: 2.5rem;
+    text-align: center;
+    font-weight: lighter;
+    min-width: fit-content;
+  }
+  & > img {
+    height: 1rem;
+    margin-right: 0.3rem;
+  }
+}
