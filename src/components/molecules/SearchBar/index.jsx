@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, SearchInput } from '@atoms';
 import './style.scss';
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
+  const searchInput = useRef(null);
+
+  const handleOnSearch = () => {
+    onSearch(searchInput.current.value);
+    searchInput.current.focus();
+  };
   return (
     <div className="search_bar">
-      <SearchInput
-        value=""
+      <input
         placeholder="github user 또는 organization을 검색해보세요."
+        ref={searchInput}
       />
-      <Button name="search" />
+      <Button name="search" onClick={handleOnSearch} />
     </div>
   );
 }
