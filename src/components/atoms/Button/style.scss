@@ -1,0 +1,14 @@
+button {
+  & {
+    background-color: #e8e8e8;
+    color: white;
+    height: 4rem;
+    width: 8rem;
+    font-size: 1.5rem;
+    color: rgb(62, 64, 66);
+  }
+
+  &:hover {
+    background-color: rgb(221, 221, 225);
+  }
+}
