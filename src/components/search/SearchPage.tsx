@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from '~/components/common/Button';
-import Input from '~/components/common/Input';
+import SearchKeywordBox from './SearchKeywordBox';
 
 const SearchPageLayout = styled.main`
   display: flex;
@@ -15,11 +14,18 @@ const SearchPageLayout = styled.main`
   top: 30%;
 
   .title {
-    font-size: 3rem;
+    margin-bottom: 0.5rem;
+
+    font-size: 4rem;
+    text-align: center;
   }
 
   .sub-title {
+    margin-bottom: 2rem;
+
     font-size: 2rem;
+    font-weight: lighter;
+    text-align: center;
   }
 `;
 
@@ -30,8 +36,7 @@ const SearchPage: React.FC<SearchPageProps> = () => {
     <SearchPageLayout>
       <h1 className="title">Gitstar Ranking</h1>
       <h3 className="sub-title">Unofficial GitHub star ranking for users, organizations and repositories.</h3>
-      <Input type="text" placeholder="Write user or organization name" />
-      <Button>Search</Button>
+      <SearchKeywordBox />
     </SearchPageLayout>
   );
 };
