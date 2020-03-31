@@ -35,14 +35,12 @@ export default {
 }
 #repoName{
   display: inline-block;
-  width: 50%;
+  width: 93%;
   font-size: 20px;
-  text-align: left;
 }
 #repoStar{
   display: inline-block;
-  width: 50%;
+  width: 7%;
   font-size: 20px;
-  text-align: right;
 }
 </style>
