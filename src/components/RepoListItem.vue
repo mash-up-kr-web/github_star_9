@@ -1,7 +1,11 @@
 <template>
   <div id="repoListItem">
-    {{ repoName }}
-    {{ repoStar }}
+    <div id="repoName">
+      {{ repoName }}
+    </div>
+    <div id="repoStar">
+      ★{{ repoStar }}
+    </div>
   </div>
 </template>
 
@@ -20,3 +24,25 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#repoListItem {
+  border: 1px solid rgba(0,0,0,.1);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+#repoName{
+  display: inline-block;
+  width: 50%;
+  font-size: 20px;
+  text-align: left;
+}
+#repoStar{
+  display: inline-block;
+  width: 50%;
+  font-size: 20px;
+  text-align: right;
+}
+</style>

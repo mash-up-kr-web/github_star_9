@@ -18,7 +18,7 @@
           id="searchButton"
           type="submit"
         >
-          Submit
+          Search
         </b-button>
       </b-form>
     </b-jumbotron>
@@ -45,7 +45,7 @@ export default {
 <style scoped>
 #searchInput {
     display: inline-block;
-    width: 30%;
+    width: 400px;
     margin-right: 10px;
 }
 #searchButton {

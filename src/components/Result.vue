@@ -1,12 +1,10 @@
 <template>
   <div id="result">
-    <p v-if="isEmptyUserName">
-      검색어를 입력해주세요.
-    </p>
-    <p v-else-if="!isVaildUserName">
+    <p v-if="!isVaildUserName">
       일치하는 사용자가 없습니다.
     </p>
     <repo-list
+      v-else
       :user-name="userName"
     />
   </div>
@@ -32,10 +30,6 @@ export default {
     };
   },
   computed: {
-    isEmptyUserName() {
-      if (this.userName) return false;
-      return true;
-    },
     isVaildUserName() {
       return this.isFetchSuccess;
     },

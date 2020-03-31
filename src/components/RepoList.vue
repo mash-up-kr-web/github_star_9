@@ -1,8 +1,12 @@
 <template>
   <div id="repoList">
     <h1>{{ userName }}</h1>
-    <h2>{{ totalRepoCount }}</h2>
-    <h2>{{ totalRepoStarCount }}</h2>
+    <div id="totalCount">
+      <p>{{ totalRepoCount }} repositories</p>
+      <p>|</p>
+      <p>{{ totalRepoStarCount }} stars</p>
+    </div>
+    <hr>
     <p v-if="isEmptyRepoList">
       레포지토리가 존재하지 않습니다.
     </p>
@@ -67,3 +71,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#repoList {
+  width: 500px;
+}
+#totalCount p{
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 25px;
+}
+</style>
