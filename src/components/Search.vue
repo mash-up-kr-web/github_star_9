@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-      this.$emit('search', this.userName);
+      this.$router.push(`/${this.userName}`);
       evt.preventDefault();
     },
   },
