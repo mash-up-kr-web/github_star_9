@@ -1,6 +1,8 @@
 <template>
   <div id="repoList">
     <h1>{{ userName }}</h1>
+    <h2>{{ totalRepoCount }}</h2>
+    <h2>{{ totalRepoStarCount }}</h2>
     <p v-if="isEmptyRepoList">
       레포지토리가 존재하지 않습니다.
     </p>
@@ -37,6 +39,15 @@ export default {
     isEmptyRepoList() {
       return !this.repoList;
     },
+    totalRepoCount() {
+      return this.repoList.length;
+    },
+    totalRepoStarCount() {
+      return this.repoList
+        .map((element) => element.stargazers_count, [])
+        .reduce((x, y) => x + y, 0);
+    },
+
   },
   watch: {
     userName: {
