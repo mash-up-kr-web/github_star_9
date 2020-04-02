@@ -26,7 +26,10 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.tsx', '.jsx'] }],
     'react/jsx-props-no-spreading': 'off',
 
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
+
+    'import/prefer-default-export': 'off',
 
     /* import file without extensions */
     'import/extensions': [
