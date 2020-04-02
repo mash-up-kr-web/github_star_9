@@ -1,17 +1,27 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Button } from './components/Button';
 import { Input } from './components/Input';
+import config from './config';
+
+const { APISERVERPATH, TOKEN } = config;
 
 const App = () => {
+  const handleSearch = useCallback(async () => {
+    const response = await axios.get(`${APISERVERPATH}/users/mango906/repos?sort=updated`);
+
+    console.log(response);
+  }, []);
+
   return (
     <Container>
       <Header>
         <Title>GitStar Ranking</Title>
         <Description>Unofficial GitHub Star ranking for users, organizations and repositories</Description>
         <Input />
-        <StyledButton>Search</StyledButton>
+        <StyledButton onClick={handleSearch}>Search</StyledButton>
       </Header>
     </Container>
   );
