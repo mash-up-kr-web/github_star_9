@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Button } from './components/Button';
 import { Input } from './components/Input';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
         <Title>GitStar Ranking</Title>
         <Description>Unofficial GitHub Star ranking for users, organizations and repositories</Description>
         <Input />
+        <StyledButton>Search</StyledButton>
       </Header>
     </Container>
   );
@@ -35,6 +37,10 @@ const Description = styled.p`
   color: #343a40;
   font-weight: 500;
   font-size: 18px;
+`;
+
+const StyledButton = styled(Button)`
+  margin-left: 20px;
 `;
 
 export default App;
