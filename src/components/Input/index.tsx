@@ -9,8 +9,4 @@ export const Input = styled.input`
   font-size: 12px;
   color: #495057;
   font-weight: 500;
-
-  &:focus {
-    border: 1px solid #000;
-  }
 `;
