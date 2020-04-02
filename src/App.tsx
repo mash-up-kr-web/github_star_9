@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Input } from './components/Input';
+
 const App = () => {
   return (
     <Container>
       <Header>
         <Title>GitStar Ranking</Title>
         <Description>Unofficial GitHub Star ranking for users, organizations and repositories</Description>
+        <Input />
       </Header>
     </Container>
   );
