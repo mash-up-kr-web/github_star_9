@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '~/components/common/Button';
@@ -18,12 +19,15 @@ const SearchKeywordBoxLayout = styled.div`
 
 interface SearchKeywordBoxProps {
   search: (keyword: string) => void;
+  initialKeyword: string;
 }
 
 const ButtonMemo = React.memo(Button);
 
-const SearchKeywordBox: React.FC<SearchKeywordBoxProps> = ({ search }) => {
-  const [keyword, setKeyword] = useState<string>('');
+const SearchKeywordBox: React.FC<SearchKeywordBoxProps> = ({ search, initialKeyword }) => {
+  const history = useHistory();
+
+  const [keyword, setKeyword] = useState<string>(initialKeyword);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
@@ -37,6 +41,15 @@ const SearchKeywordBox: React.FC<SearchKeywordBoxProps> = ({ search }) => {
   const handleButtonClick = () => {
     search(keyword);
   };
+
+  useEffect(() => {
+    history.listen((location) => {
+      const username = new URLSearchParams(location.search).get('username');
+      if (username) setKeyword(username);
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <SearchKeywordBoxLayout>

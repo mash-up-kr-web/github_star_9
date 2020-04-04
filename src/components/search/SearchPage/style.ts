@@ -1,7 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const SearchPage = React.memo(styled.main<{ moveTop: boolean }>`
+interface SearchPaheProps {
+  moveTop: boolean;
+  startFromTop: boolean;
+}
+
+const SearchPage = React.memo(styled.main<SearchPaheProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,20 +28,28 @@ const SearchPage = React.memo(styled.main<{ moveTop: boolean }>`
     margin: 3rem;
   }
 
-  ${(props) =>
-    props.moveTop &&
-    css`
-      animation-name: moveSearchBoxToTop;
-      animation-duration: 1s;
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
+  ${({ startFromTop, moveTop }) => {
+    if (startFromTop)
+      return css`
+        top: 5vh;
+      `;
 
-      @keyframes moveSearchBoxToTop {
-        100% {
-          top: 5vh;
+    return (
+      moveTop &&
+      css`
+        animation-name: moveSearchBoxToTop;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+
+        @keyframes moveSearchBoxToTop {
+          100% {
+            top: 5vh;
+          }
         }
-      }
-    `};
+      `
+    );
+  }};
 `);
 
 export default { SearchPage };

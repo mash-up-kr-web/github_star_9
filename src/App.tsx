@@ -1,9 +1,9 @@
 import React from 'react';
 
-import SearchPage from '~/components/search/SearchPage';
+import Router from './Router';
 
 const App: React.FC = () => {
-  return <SearchPage />;
+  return <Router />;
 };
 
 export default App;
