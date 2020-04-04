@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { Button } from './components/Button';
 import { Input } from './components/Input';
+import { RepoItem } from './components/RepoItem';
 import config from './config';
 import useInput from './hooks/useInput';
 
@@ -30,13 +31,15 @@ const App = () => {
         <Input onChange={onChange} name="username" />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </Header>
+      <RepoItem></RepoItem>
     </Container>
   );
 };
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Header = styled.div`
