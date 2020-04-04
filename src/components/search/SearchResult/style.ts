@@ -23,7 +23,7 @@ const RepositoryList = styled.ul`
   list-style-type: none;
 `;
 
-const RepositoryItem = styled.li`
+const RepositoryItem = styled.a`
   margin: 0.5rem 0;
   padding: 1rem;
 
@@ -34,7 +34,6 @@ const RepositoryItem = styled.li`
 
   :hover {
     background-color: #dcdcdc;
-    cursor: pointer;
   }
 
   .repository-name {

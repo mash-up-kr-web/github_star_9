@@ -24,6 +24,7 @@ export interface RepositoriesRes {
   name: string;
   stargazers_count: number;
   description: string;
+  html_url: string;
 }
 
 const getUserInfo = async (username: string) => {

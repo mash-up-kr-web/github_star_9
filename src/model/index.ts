@@ -2,6 +2,7 @@ export interface Repository {
   name: string;
   star: number;
   description: string;
+  link: string;
 }
 
 export interface UserInfo {

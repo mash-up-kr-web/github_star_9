@@ -23,12 +23,14 @@ const StarCount: React.FC<{ count: number }> = ({ count }) => {
 const RepositoryList: React.FC<{ repositories: Repository[] }> = ({ repositories }) => {
   return (
     <Styled.RepositoryList>
-      {repositories.map(({ name, star, description }) => (
-        <Styled.RepositoryItem key={name}>
-          <span className="repository-name">{name}</span>
-          {description && <span className="repository-description">{description}</span>}
-          <StarCount count={star} />
-        </Styled.RepositoryItem>
+      {repositories.map(({ name, star, description, link }) => (
+        <li key={name}>
+          <Styled.RepositoryItem href={link}>
+            <span className="repository-name">{name}</span>
+            {description && <span className="repository-description">{description}</span>}
+            <StarCount count={star} />
+          </Styled.RepositoryItem>
+        </li>
       ))}
     </Styled.RepositoryList>
   );
