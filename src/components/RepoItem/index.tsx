@@ -2,13 +2,21 @@ import { StarFilled } from '@ant-design/icons';
 import React from 'react';
 import styled from 'styled-components';
 
-export const RepoItem = () => {
+interface Props {
+  html_url: string;
+  full_name: string;
+  stargazers_count: number;
+}
+
+export const RepoItem: React.FC<Props> = (props) => {
+  const { html_url, full_name, stargazers_count } = props;
+
   return (
     <Wrapper>
-      <UserName>mango906</UserName>
+      <UserName>{full_name}</UserName>
       <Star>
         <StarFilled />
-        <Rating>10</Rating>
+        <Rating>{stargazers_count}</Rating>
       </Star>
     </Wrapper>
   );

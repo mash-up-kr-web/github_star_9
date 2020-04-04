@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 import { Button } from './components/Button';
@@ -16,11 +16,20 @@ const OAUTH = {
 
 const App = () => {
   const [state, onChange] = useInput({ username: "" });
+  const [data, setData] = useState([]);
 
   const { username } = state;
 
+  const repoItems = useMemo(() => {
+    return data.map((el) => <RepoItem {...el} />);
+  }, [data]);
+
   const handleSearch = useCallback(async () => {
-    const response = await axios.get(`${APISERVERPATH}/users/${username}/repos?per_page=1`, OAUTH);
+    const response = await axios.get(`${APISERVERPATH}/users/${username}/repos`, OAUTH);
+
+    if (response.status === 200) {
+      setData(response.data);
+    }
   }, [username]);
 
   return (
@@ -31,7 +40,7 @@ const App = () => {
         <Input onChange={onChange} name="username" />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </Header>
-      <RepoItem></RepoItem>
+      {repoItems}
     </Container>
   );
 };
