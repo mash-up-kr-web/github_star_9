@@ -5,22 +5,29 @@ import styled from 'styled-components';
 import { Button } from './components/Button';
 import { Input } from './components/Input';
 import config from './config';
+import useInput from './hooks/useInput';
 
 const { APISERVERPATH, TOKEN } = config;
 
-const App = () => {
-  const handleSearch = useCallback(async () => {
-    const response = await axios.get(`${APISERVERPATH}/users/mango906/repos?sort=updated`);
+const OAUTH = {
+  headers: { Authorization: `token ${TOKEN}` }
+};
 
-    console.log(response);
-  }, []);
+const App = () => {
+  const [state, onChange] = useInput({ username: "" });
+
+  const { username } = state;
+
+  const handleSearch = useCallback(async () => {
+    const response = await axios.get(`${APISERVERPATH}/users/${username}/repos?per_page=1`, OAUTH);
+  }, [username]);
 
   return (
     <Container>
       <Header>
         <Title>GitStar Ranking</Title>
         <Description>Unofficial GitHub Star ranking for users, organizations and repositories</Description>
-        <Input />
+        <Input onChange={onChange} name="username" />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </Header>
     </Container>
