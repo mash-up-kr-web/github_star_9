@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 
 import api from '~/utils/api';
@@ -51,17 +51,23 @@ const SearchPageLayout = React.memo(styled.main<{ moveTop: boolean }>`
     `};
 `);
 
-interface SearchPageProps {}
-
-interface Status {
-  fetched: boolean;
-  loading: boolean;
-  error: boolean;
+interface SearchPageHeaderProps {
+  search: (username: string) => void;
 }
 
-const initialStatus = { fetched: false, loading: false, error: false };
+interface SearchPageBodyProps {
+  status?: PageStatus;
+  userInfo?: UserInfo;
+}
 
-const SearchPageHeader: React.FC<{ search: (username: string) => void }> = React.memo(({ search }) => {
+enum PageStatus {
+  Fetched = 'Fetched',
+  // eslint-disable-next-line no-shadow
+  Loading = 'Loading',
+  Error = 'Error',
+}
+
+const SearchPageHeader: React.FC<SearchPageHeaderProps> = React.memo(({ search }) => {
   return (
     <>
       <BeautifulTitle title="Gitstar Ranking" />
@@ -71,38 +77,52 @@ const SearchPageHeader: React.FC<{ search: (username: string) => void }> = React
   );
 });
 
-const SearchPage: React.FC<SearchPageProps> = () => {
+const SearchPageBody: React.FC<SearchPageBodyProps> = ({ status, userInfo }) => {
+  switch (status) {
+    case PageStatus.Fetched:
+      return <SearchResult userInfo={userInfo} />;
+    case PageStatus.Loading:
+      return <Loading className="status-section" />;
+    case PageStatus.Error:
+      return <NotFound className="status-section" />;
+    default:
+      return null;
+  }
+};
+
+const SearchPage: React.FC<{}> = () => {
   const [userInfo, setUserInfo] = useState<UserInfo>();
   const [hasBeenSearched, setHasBeenSearched] = useState<boolean>(false);
-  const [status, setStatus] = useState<Status>(initialStatus);
+  const [status, setStatus] = useState<PageStatus>();
 
-  const search = async (username: string) => {
-    setUserInfo(undefined);
-    setStatus({ fetched: false, loading: true, error: false });
+  const search = useCallback(
+    async (username: string) => {
+      setUserInfo(undefined);
+      setStatus(PageStatus.Loading);
 
-    if (!hasBeenSearched) {
-      setHasBeenSearched(true);
-    }
+      if (!hasBeenSearched) {
+        setHasBeenSearched(true);
+      }
 
-    await delay(1000);
+      await delay(1000);
 
-    try {
-      const result = await api.getRepositories(username);
-      const parsed = parseUserInfo(username, result);
+      try {
+        const result = await api.getRepositories(username);
+        const parsed = parseUserInfo(username, result);
 
-      setUserInfo(parsed);
-      setStatus((prevState) => ({ ...prevState, fetched: true, loading: false }));
-    } catch {
-      setStatus((prevState) => ({ ...prevState, loading: false, error: true }));
-    }
-  };
+        setUserInfo(parsed);
+        setStatus(PageStatus.Fetched);
+      } catch {
+        setStatus(PageStatus.Error);
+      }
+    },
+    [hasBeenSearched],
+  );
 
   return (
     <SearchPageLayout moveTop={hasBeenSearched}>
       <SearchPageHeader search={search} />
-      {status.fetched && <SearchResult userInfo={userInfo} />}
-      {status.loading && <Loading className="status-section" />}
-      {status.error && <NotFound className="status-section" />}
+      <SearchPageBody status={status} userInfo={userInfo} />
     </SearchPageLayout>
   );
 };
