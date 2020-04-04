@@ -1,3 +1,5 @@
+import { parseUserInfo } from '~/parser';
+
 enum HttpMethod {
   Get = 'Get',
   Post = 'Post',
@@ -17,19 +19,20 @@ const request = <T>(path: string, option: Option) => {
   return fetch(`${GITHUB_API_BASE_URL}${path}`, option).then((res) => res.json() as Promise<T>);
 };
 
-/* Get user's repositories */
+/* Get user info */
 export interface RepositoriesRes {
   name: string;
   stargazers_count: number;
   description: string;
 }
 
-const getRepositories = async (name: string) => {
+const getUserInfo = async (username: string) => {
   const option = {
     method: HttpMethod.Get,
   };
 
-  return request<RepositoriesRes[]>(apiPaths.repositories(name), option);
+  const repositories = await request<RepositoriesRes[]>(apiPaths.repositories(username), option);
+  return parseUserInfo(username, repositories);
 };
 
-export default { getRepositories };
+export default { getUserInfo };

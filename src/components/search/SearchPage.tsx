@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 
 import api from '~/utils/api';
 import { delay } from '~/utils/etc';
-import { parseUserInfo } from '~/parser';
 import { UserInfo } from '~/model';
 
 import Loading from '~/components/common/Loading';
@@ -97,7 +96,6 @@ const SearchPage: React.FC<{}> = () => {
 
   const search = useCallback(
     async (username: string) => {
-      setUserInfo(undefined);
       setStatus(PageStatus.Loading);
 
       if (!hasBeenSearched) {
@@ -107,10 +105,9 @@ const SearchPage: React.FC<{}> = () => {
       await delay(1000);
 
       try {
-        const result = await api.getRepositories(username);
-        const parsed = parseUserInfo(username, result);
+        const result = await api.getUserInfo(username);
+        setUserInfo(result);
 
-        setUserInfo(parsed);
         setStatus(PageStatus.Fetched);
       } catch {
         setStatus(PageStatus.Error);
