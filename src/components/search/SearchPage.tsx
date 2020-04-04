@@ -6,6 +6,9 @@ import { delay } from '~/utils/etc';
 import { parseUserInfo } from '~/parser';
 import { UserInfo } from '~/model';
 
+import Loading from '~/components/common/Loading';
+import NotFound from '~/components/common/NotFound';
+
 import BeautifulTitle from './BeautifulTitle';
 import SearchKeywordBox from './SearchKeywordBox';
 import SearchResult from './SearchResult';
@@ -28,6 +31,10 @@ const SearchPageLayout = React.memo(styled.main<{ moveTop: boolean }>`
     text-align: center;
   }
 
+  .status-section {
+    margin: 3rem;
+  }
+
   ${(props) =>
     props.moveTop &&
     css`
@@ -41,10 +48,18 @@ const SearchPageLayout = React.memo(styled.main<{ moveTop: boolean }>`
           top: 5vh;
         }
       }
-    `}
+    `};
 `);
 
 interface SearchPageProps {}
+
+interface Status {
+  fetched: boolean;
+  loading: boolean;
+  error: boolean;
+}
+
+const initialStatus = { fetched: false, loading: false, error: false };
 
 const SearchPageHeader: React.FC<{ search: (username: string) => void }> = React.memo(({ search }) => {
   return (
@@ -59,28 +74,35 @@ const SearchPageHeader: React.FC<{ search: (username: string) => void }> = React
 const SearchPage: React.FC<SearchPageProps> = () => {
   const [userInfo, setUserInfo] = useState<UserInfo>();
   const [hasBeenSearched, setHasBeenSearched] = useState<boolean>(false);
+  const [status, setStatus] = useState<Status>(initialStatus);
 
   const search = async (username: string) => {
     setUserInfo(undefined);
+    setStatus({ fetched: false, loading: true, error: false });
 
     if (!hasBeenSearched) {
       setHasBeenSearched(true);
-      await delay(1000);
     }
+
+    await delay(1000);
 
     try {
       const result = await api.getRepositories(username);
       const parsed = parseUserInfo(username, result);
+
       setUserInfo(parsed);
+      setStatus((prevState) => ({ ...prevState, fetched: true, loading: false }));
     } catch {
-      alert('not correct');
+      setStatus((prevState) => ({ ...prevState, loading: false, error: true }));
     }
   };
 
   return (
     <SearchPageLayout moveTop={hasBeenSearched}>
       <SearchPageHeader search={search} />
-      <SearchResult userInfo={userInfo} />
+      {status.fetched && <SearchResult userInfo={userInfo} />}
+      {status.loading && <Loading className="status-section" />}
+      {status.error && <NotFound className="status-section" />}
     </SearchPageLayout>
   );
 };
