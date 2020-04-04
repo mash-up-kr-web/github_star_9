@@ -1,6 +1,7 @@
 export interface Repository {
   name: string;
   star: number;
+  description: string;
 }
 
 export interface UserInfo {

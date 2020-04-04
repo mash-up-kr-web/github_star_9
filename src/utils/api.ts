@@ -21,6 +21,7 @@ const request = <T>(path: string, option: Option) => {
 export interface RepositoriesRes {
   name: string;
   stargazers_count: number;
+  description: string;
 }
 
 const getRepositories = async (name: string) => {

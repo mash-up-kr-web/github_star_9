@@ -23,8 +23,6 @@ const Header = styled.div`
 `;
 
 const StyledRepositoryList = styled.ul`
-  background-color: #e9e9e9;
-
   font-weight: lighter;
 
   list-style-type: none;
@@ -32,13 +30,12 @@ const StyledRepositoryList = styled.ul`
 
 const RepositoryItem = styled.li`
   margin: 0.5rem 0;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem;
 
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
 
-  font-size: 1.5rem;
+  border: 1px solid #e9e9e9;
 
   :hover {
     background-color: #dcdcdc;
@@ -46,7 +43,13 @@ const RepositoryItem = styled.li`
   }
 
   .repository-name {
-    margin-right: 3rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .repository-description {
+    margin-bottom: 1rem;
+    font-size: 1rem;
   }
 `;
 
@@ -54,6 +57,8 @@ const StyledStarCount = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  font-size: 1rem;
 
   .count {
     margin-left: 0.5rem;
@@ -78,9 +83,10 @@ const StarCount: React.FC<{ count: number }> = ({ count }) => {
 const RepositoryList: React.FC<{ repositories: Repository[] }> = ({ repositories }) => {
   return (
     <StyledRepositoryList>
-      {repositories.map(({ name, star }) => (
+      {repositories.map(({ name, star, description }) => (
         <RepositoryItem key={name}>
           <span className="repository-name">{name}</span>
+          {description && <span className="repository-description">{description}</span>}
           <StarCount count={star} />
         </RepositoryItem>
       ))}
