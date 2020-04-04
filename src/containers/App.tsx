@@ -1,27 +1,36 @@
 import axios from 'axios';
+import { inject, observer } from 'mobx-react';
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import { Button } from './components/Button';
-import { Input } from './components/Input';
-import { RepoItem } from './components/RepoItem';
-import config from './config';
-import useInput from './hooks/useInput';
+import { Button } from '../components/Button';
+import { Input } from '../components/Input';
+import { RepoItem } from '../components/RepoItem';
+import config from '../config';
+import useInput from '../hooks/useInput';
 
 const { APISERVERPATH, TOKEN } = config;
 
 const OAUTH = {
-  headers: { Authorization: `token ${TOKEN}` }
+  headers: { Authorization: `token ${TOKEN}` },
 };
 
-const App = () => {
+interface Props {}
+
+const App: React.FC<Props> = (props) => {
   const [state, onChange] = useInput({ username: "" });
   const [data, setData] = useState([]);
 
   const { username } = state;
 
+  console.log(props);
+
   const repoItems = useMemo(() => {
     return data.map((el) => <RepoItem {...el} />);
+  }, [data]);
+
+  const totalStars = useMemo(() => {
+    return data.reduce((prev, next: any) => prev + next.stargazers_count, 0);
   }, [data]);
 
   const handleSearch = useCallback(async () => {
@@ -72,4 +81,4 @@ const StyledButton = styled(Button)`
   margin-left: 20px;
 `;
 
-export default App;
+export default inject("store")(observer(App));
