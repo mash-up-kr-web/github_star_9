@@ -5,7 +5,7 @@ import api from '~/utils/api';
 import { delay } from '~/utils/etc';
 import { UserInfo } from '~/model';
 
-import Loading from '~/components/common/Loading';
+import LoadingSpinner from '~/components/common/LoadingSpinner';
 import NotFound from '~/components/common/NotFound';
 
 import BeautifulTitle from './BeautifulTitle';
@@ -61,7 +61,6 @@ interface SearchPageBodyProps {
 
 enum PageStatus {
   Fetched = 'Fetched',
-  // eslint-disable-next-line no-shadow
   Loading = 'Loading',
   Error = 'Error',
 }
@@ -81,7 +80,7 @@ const SearchPageBody: React.FC<SearchPageBodyProps> = ({ status, userInfo }) => 
     case PageStatus.Fetched:
       return <SearchResult userInfo={userInfo} />;
     case PageStatus.Loading:
-      return <Loading className="status-section" />;
+      return <LoadingSpinner className="status-section" />;
     case PageStatus.Error:
       return <NotFound className="status-section" />;
     default:
