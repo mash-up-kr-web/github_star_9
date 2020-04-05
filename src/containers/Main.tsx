@@ -39,12 +39,21 @@ const Main: React.FC<Props> = (props) => {
     store.fetchData(username);
   }, [store, username]);
 
+  const handleKeyUp = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.keyCode === 13) {
+        handleSearch();
+      }
+    },
+    [handleSearch]
+  );
+
   return (
     <Container>
       <Header>
         <Title>GitStar Ranking</Title>
         <Description>Unofficial GitHub Star ranking for users, organizations and repositories</Description>
-        <Input onChange={onChange} name="username" />
+        <Input onChange={onChange} name="username" onKeyUp={handleKeyUp} />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </Header>
       {userInfo}
