@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import SearchPage from '~/components/search/SearchPage';
+import SearchPage from '~/pages/SearchPage';
 
 const Router: React.FC = () => {
   return (

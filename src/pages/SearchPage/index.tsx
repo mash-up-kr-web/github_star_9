@@ -14,9 +14,9 @@ import NotFound from '~/components/common/NotFound';
 import PageStatusProvider, { PageStatus, PageStatusContext } from '~/contexts/PageStatus';
 import UserInfoProvider, { UserInfoContext } from '~/contexts/UserInfo';
 
-import BeautifulTitle from '../BeautifulTitle';
-import SearchKeywordBox from '../SearchKeywordBox';
-import SearchResult from '../SearchResult';
+import BeautifulTitle from '../../components/search/BeautifulTitle';
+import SearchKeywordBox from '../../components/search/SearchKeywordBox';
+import SearchResult from '../../components/search/SearchResult';
 
 interface SearchPageHeaderProps {
   search: (username: string) => void;
