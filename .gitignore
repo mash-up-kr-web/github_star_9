@@ -121,4 +121,6 @@ psd
 thumb
 sketch
 
+.cache
+
 # End of https://www.gitignore.io/api/node,react

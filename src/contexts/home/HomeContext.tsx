@@ -13,7 +13,6 @@ interface HomeContextValue {
   username: string;
   repos: Repository[];
   totalStars: number;
-  setUsername: React.Dispatch<React.SetStateAction<string>>;
   searchRepo: (name: string) => void;
 }
 
@@ -38,7 +37,6 @@ export const HomeProvider = (props: Props<HTMLElement>) => {
   const value = useMemo(
     () => ({
       username,
-      setUsername,
       repos,
       totalStars,
       searchRepo,
