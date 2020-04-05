@@ -15,8 +15,12 @@ const initialContextValue = {
 
 export const UserInfoContext = createContext<UserInfoContextValue>(initialContextValue);
 
-const UserInfoProvider: React.FC = ({ children }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo>();
+interface UserInfoProviderProps {
+  initialUserInfo?: UserInfo;
+}
+
+const UserInfoProvider: React.FC<UserInfoProviderProps> = ({ children, initialUserInfo }) => {
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>(initialUserInfo);
 
   const searchUsefInfo = useCallback(async (username: string) => {
     const result = await api.getUserInfo(username);
