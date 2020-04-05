@@ -1,7 +1,3 @@
-import { observable } from 'mobx';
-
-class Store {
-  @observable data = [];
-}
+import Store from './store';
 
 export default new Store();
