@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 
 import Styled from './style';
 
-import api from '~/utils/api';
 import { delay } from '~/utils/etc';
 import { UserInfo } from '~/model';
 import useQuery from '~/hooks/useQuery';
@@ -11,7 +10,8 @@ import useQuery from '~/hooks/useQuery';
 import LoadingSpinner from '~/components/common/LoadingSpinner';
 import NotFound from '~/components/common/NotFound';
 
-import { PageStatus, PageStatusContext } from '~/contexts/PageStatus';
+import PageStatusProvider, { PageStatus, PageStatusContext } from '~/contexts/PageStatus';
+import UserInfoProvider, { UserInfoContext } from '~/contexts/UserInfo';
 
 import BeautifulTitle from '../BeautifulTitle';
 import SearchKeywordBox from '../SearchKeywordBox';
@@ -58,10 +58,10 @@ const SearchPage: React.FC<{}> = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const openedWithUsername = useMemo(() => query.has('username'), []);
 
-  const [userInfo, setUserInfo] = useState<UserInfo>();
   const [hasBeenSearched, setHasBeenSearched] = useState<boolean>(openedWithUsername);
 
   const { pageStatus, chagePageStatus } = useContext(PageStatusContext);
+  const { userInfo, searchUsefInfo } = useContext(UserInfoContext);
 
   const search = useCallback(
     async (username: string) => {
@@ -74,18 +74,17 @@ const SearchPage: React.FC<{}> = () => {
       await delay(1000);
 
       try {
-        const result = await api.getUserInfo(username);
-        setUserInfo(result);
+        await searchUsefInfo(username);
 
         chagePageStatus(PageStatus.Fetched);
       } catch {
         chagePageStatus(PageStatus.Error);
       }
     },
-    [hasBeenSearched, chagePageStatus],
+    [chagePageStatus, hasBeenSearched, searchUsefInfo],
   );
 
-  const searchAfterHistoryPush = useCallback(
+  const historyPushForSearchUserInfo = useCallback(
     (username: string) => {
       history.push(`?username=${username}`);
     },
@@ -105,10 +104,16 @@ const SearchPage: React.FC<{}> = () => {
 
   return (
     <Styled.SearchPage moveTop={hasBeenSearched} startFromTop={openedWithUsername}>
-      <SearchPageHeader search={searchAfterHistoryPush} />
+      <SearchPageHeader search={historyPushForSearchUserInfo} />
       <SearchPageBody pageStatus={pageStatus} userInfo={userInfo} />
     </Styled.SearchPage>
   );
 };
 
-export default SearchPage;
+export default () => (
+  <PageStatusProvider>
+    <UserInfoProvider>
+      <SearchPage />
+    </UserInfoProvider>
+  </PageStatusProvider>
+);
