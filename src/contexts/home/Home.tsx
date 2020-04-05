@@ -1,12 +1,14 @@
 import React from "react";
 
+import RepoResult from "./components/RepoResult";
 import Title from "./components/Title";
+import { HomeProvider } from "./HomeContext";
 
 const Home = () => (
-  <>
+  <HomeProvider>
     <Title />
-    (대충 결과가 들어가는 영역)
-  </>
+    <RepoResult />
+  </HomeProvider>
 );
 
 export default Home;

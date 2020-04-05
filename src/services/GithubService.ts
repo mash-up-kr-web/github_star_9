@@ -14,11 +14,11 @@ class GithubService {
       (await this.getReposFromOrg(username)) ||
       (await this.getReposFromUsername(username));
 
-    return res?.data.map((repo: RepoResult) => ({
+    return res ? res?.data.map((repo: RepoResult) => ({
       name: repo.name ?? "untitled",
-      url: repo.url,
+      url: repo.html_url,
       stargazersCount: repo.stargazers_count,
-    })) as Repository[];
+    })) as Repository[] : [];
   }
 
   private async getReposFromOrg(org: string) {

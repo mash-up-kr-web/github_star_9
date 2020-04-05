@@ -1,17 +1,31 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import styled from "styled-components";
 
-import useHomeStore from "../HomeStore";
+import { HomeContext } from "../HomeContext";
 
 const Title = () => {
-  const { username, setUsername, onRepoSearch } = useHomeStore();
+  const {
+    searchRepo,
+  } = useContext(HomeContext);
+
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setUsername(e?.target?.value);
+      setInputValue(e?.target?.value);
     },
-    [setUsername],
+    [setInputValue],
   );
+
+  const handleSearch = useCallback(() => {
+    searchRepo(inputValue);
+  }, [inputValue]);
+
+  const handleEnter = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      searchRepo(inputValue);
+    }
+  }, [inputValue]);
 
   return (
     <TitleWrapper>
@@ -20,15 +34,15 @@ const Title = () => {
         Unofficial GitHub star ranking for users, organizations and
         repositories.
       </h3>
-      <TitleInput value={username} onChange={handleChange} />
-      <TitleButton onClick={onRepoSearch}>Search</TitleButton>
+      <TitleInput value={inputValue} onChange={handleChange} onKeyDown={handleEnter} />
+      <TitleButton onClick={handleSearch}>Search</TitleButton>
     </TitleWrapper>
   );
 };
 
 export default Title;
 
-const TitleWrapper = styled.div`
+const TitleWrapper = styled.header`
   padding: 10px;
   background-color: rgb(250, 250, 250);
 `;
