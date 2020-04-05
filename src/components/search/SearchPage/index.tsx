@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Styled from './style';
@@ -11,6 +11,8 @@ import useQuery from '~/hooks/useQuery';
 import LoadingSpinner from '~/components/common/LoadingSpinner';
 import NotFound from '~/components/common/NotFound';
 
+import { PageStatus, PageStatusContext } from '~/contexts/PageStatus';
+
 import BeautifulTitle from '../BeautifulTitle';
 import SearchKeywordBox from '../SearchKeywordBox';
 import SearchResult from '../SearchResult';
@@ -20,14 +22,8 @@ interface SearchPageHeaderProps {
 }
 
 interface SearchPageBodyProps {
-  status?: PageStatus;
+  pageStatus?: PageStatus;
   userInfo?: UserInfo;
-}
-
-enum PageStatus {
-  Fetched = 'Fetched',
-  Loading = 'Loading',
-  Error = 'Error',
 }
 
 const SearchPageHeader: React.FC<SearchPageHeaderProps> = React.memo(({ search }) => {
@@ -42,8 +38,8 @@ const SearchPageHeader: React.FC<SearchPageHeaderProps> = React.memo(({ search }
   );
 });
 
-const SearchPageBody: React.FC<SearchPageBodyProps> = ({ status, userInfo }) => {
-  switch (status) {
+const SearchPageBody: React.FC<SearchPageBodyProps> = ({ pageStatus, userInfo }) => {
+  switch (pageStatus) {
     case PageStatus.Fetched:
       return <SearchResult userInfo={userInfo} />;
     case PageStatus.Loading:
@@ -64,11 +60,12 @@ const SearchPage: React.FC<{}> = () => {
 
   const [userInfo, setUserInfo] = useState<UserInfo>();
   const [hasBeenSearched, setHasBeenSearched] = useState<boolean>(openedWithUsername);
-  const [status, setStatus] = useState<PageStatus>();
+
+  const { pageStatus, chagePageStatus } = useContext(PageStatusContext);
 
   const search = useCallback(
     async (username: string) => {
-      setStatus(PageStatus.Loading);
+      chagePageStatus(PageStatus.Loading);
 
       if (!hasBeenSearched) {
         setHasBeenSearched(true);
@@ -80,12 +77,12 @@ const SearchPage: React.FC<{}> = () => {
         const result = await api.getUserInfo(username);
         setUserInfo(result);
 
-        setStatus(PageStatus.Fetched);
+        chagePageStatus(PageStatus.Fetched);
       } catch {
-        setStatus(PageStatus.Error);
+        chagePageStatus(PageStatus.Error);
       }
     },
-    [hasBeenSearched],
+    [hasBeenSearched, chagePageStatus],
   );
 
   const searchAfterHistoryPush = useCallback(
@@ -109,7 +106,7 @@ const SearchPage: React.FC<{}> = () => {
   return (
     <Styled.SearchPage moveTop={hasBeenSearched} startFromTop={openedWithUsername}>
       <SearchPageHeader search={searchAfterHistoryPush} />
-      <SearchPageBody status={status} userInfo={userInfo} />
+      <SearchPageBody pageStatus={pageStatus} userInfo={userInfo} />
     </Styled.SearchPage>
   );
 };
