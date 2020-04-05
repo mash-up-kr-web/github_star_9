@@ -36,11 +36,16 @@
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
+    "operator-linebreak": "off",
     "import-helpers/order-imports": [
       "warn",
       {
         "newlinesBetween": "always",
-        "groups": ["module", ["/^~/contexts/"], ["parent", "sibling", "index"]],
+        "groups": [
+          "module",
+          ["/^~/contexts/", "/^~/services/", "/^~/utils/"],
+          ["parent", "sibling", "index"]
+        ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
     ]

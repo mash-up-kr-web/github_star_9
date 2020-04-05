@@ -1,10 +1,17 @@
 import { useState, useCallback } from "react";
 
-const useHomeStore = () => {
-  const [username, setUsername] = useState("");
+import GithubService from "~/services/GithubService";
+import { Repository } from "~/utils/model/Repository";
 
-  const onRepoSearch = useCallback(() => {
-    console.log(username);
+const useHomeStore = () => {
+  const githubService = new GithubService();
+
+  const [username, setUsername] = useState("");
+  const [repos, setRepos] = useState<Repository[]>([]);
+
+  const onRepoSearch = useCallback(async () => {
+    const res = await githubService.getRepos(username);
+    setRepos(res);
   }, [username]);
 
   return {

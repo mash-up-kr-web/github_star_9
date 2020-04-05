@@ -10,6 +10,7 @@
     "start": "parcel src/index.html"
   },
   "dependencies": {
+    "@octokit/rest": "^17.1.4",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
