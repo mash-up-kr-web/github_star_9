@@ -34,6 +34,14 @@ const Wrapper = styled.div`
   padding: 12px;
   font-size: 24px;
   cursor: pointer;
+
+  & + div {
+    margin-top: -1px;
+  }
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
 `;
 
 const UserName = styled.div`

@@ -57,7 +57,7 @@ const Main: React.FC<Props> = (props) => {
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </Header>
       {userInfo}
-      {repoItems}
+      <RepoItems>{repoItems}</RepoItems>
     </Container>
   );
 };
@@ -107,5 +107,7 @@ const Count = styled.span`
     padding-left: 12px;
   }
 `;
+
+const RepoItems = styled.div``;
 
 export default inject("store")(observer(Main));
