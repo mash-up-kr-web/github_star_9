@@ -11,11 +11,13 @@ export default function SearchResult({
 }) {
   return (
     <div className="search_result">
-      <SearchResultDescription
-        name={name}
-        repoCount={repoCount}
-        starCount={starCount}
-      />
+      {name && (
+        <SearchResultDescription
+          name={name}
+          repoCount={repoCount}
+          starCount={starCount}
+        />
+      )}
       <SearchResultList resultItems={resultItems} />
     </div>
   );
