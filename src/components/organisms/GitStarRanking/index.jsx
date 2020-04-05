@@ -8,12 +8,12 @@ export default function GitStarRanking() {
   const [keyword, setKeyword] = useState('');
   const [result, setResult] = useState([]);
 
-  const onSearch = keyword => {
-    setKeyword(keyword);
+  const onSearch = word => {
     api
-      .getRepos(keyword)
-      .then(data => {
-        setResult(data);
+      .getRepos(word)
+      .then(({ owner, repos }) => {
+        setKeyword(owner);
+        setResult(repos);
       })
       .catch(err => console.error(err));
   };

@@ -1,15 +1,22 @@
 import API from './APIutils';
 
 export function getRepos(keyword) {
-  const payload = API.get(`/users/${keyword}/repos`).then(({ data }) =>
-    data.map(({ id, name, description, url, stargazers_count }) => ({
-      id,
-      name,
-      description,
-      url,
-      starCount: stargazers_count,
-    })),
-  );
+  return API.get(`/users/${keyword}/repos`).then(({ data }) => {
+    const owner = data.length && data[0].owner.login;
 
-  return payload;
+    const repos = data.map(
+      ({ id, name, description, url, stargazers_count: starCount }) => ({
+        id,
+        name,
+        description,
+        url,
+        starCount,
+      }),
+    );
+
+    return {
+      owner,
+      repos,
+    };
+  });
 }
