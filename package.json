@@ -1,0 +1,23 @@
+{
+  "name": "github_star_9",
+  "version": "1.0.0",
+  "description": "목표: Git Star 목표 github user(또는 org) 를 검색하여 해당 user의 총 Repo 수와 총 star 수 그리고 repo별 스타들을 보여주는 page를 제작한다.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.12.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curiousPark/github_star_9.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/curiousPark/github_star_9/issues"
+  },
+  "homepage": "https://github.com/curiousPark/github_star_9#readme"
+}
