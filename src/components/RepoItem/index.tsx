@@ -1,5 +1,5 @@
 import { StarFilled } from '@ant-design/icons';
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -11,8 +11,12 @@ interface Props {
 export const RepoItem: React.FC<Props> = (props) => {
   const { html_url, full_name, stargazers_count } = props;
 
+  const handleRedirect = useCallback(() => {
+    window.open(html_url);
+  }, [html_url]);
+
   return (
-    <Wrapper>
+    <Wrapper onClick={handleRedirect}>
       <UserName>{full_name}</UserName>
       <Star>
         <StarFilled />
@@ -26,10 +30,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* width: 500px; */
   border: 1px solid #ced4da;
   padding: 12px;
   font-size: 24px;
+  cursor: pointer;
 `;
 
 const UserName = styled.div`
