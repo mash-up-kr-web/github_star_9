@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { SearchBar } from '@molecules';
-import { SearchResult } from '@organisms';
+import SearchBar from '@molecules/SearchBar';
+import SearchResult from '@organisms/SearchResult';
 
 import * as api from 'apis';
 
@@ -9,13 +9,10 @@ export default function GitStarRanking() {
   const [result, setResult] = useState([]);
 
   const onSearch = word => {
-    api
-      .getRepos(word)
-      .then(({ owner, repos }) => {
-        setKeyword(owner);
-        setResult(repos);
-      })
-      .catch(err => console.error(err));
+    api.getRepos(word).then(({ owner, repos }) => {
+      setKeyword(owner);
+      setResult(repos);
+    });
   };
 
   return (
@@ -30,7 +27,7 @@ export default function GitStarRanking() {
         name={keyword}
         resultItems={result}
         repoCount={result.length}
-        starCount={result.reduce((acc, cur) => (acc += cur.starCount), 0)}
+        starCount={result.reduce((acc, cur) => acc + cur.starCount, 0)}
       />
     </>
   );

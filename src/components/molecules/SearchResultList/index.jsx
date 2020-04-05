@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchResultListItem } from '@atoms';
+import SearchResultListItem from '@atoms/SearchResultListItem';
 
 export default function SearchResultList({ resultItems }) {
   return (

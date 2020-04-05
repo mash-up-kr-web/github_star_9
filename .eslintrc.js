@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['airbnb'],
+  extends: ['airbnb', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -21,8 +21,13 @@ module.exports = {
     'arrow-parens': ['error', 'as-needed'],
     'import/prefer-default-export': 'off',
     'react/prop-types': 0,
+    'react/jsx-props-no-spreading': 'off',
   },
-  setting: {
-    'import/resolver': 'webpack',
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'config/webpack.dev.js',
+      },
+    },
   },
 };

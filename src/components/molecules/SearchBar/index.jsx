@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Button, SearchInput } from '@atoms';
+import Button from '@atoms/Button';
 import './style.scss';
 
 export default function SearchBar({ onSearch }) {
@@ -9,6 +9,7 @@ export default function SearchBar({ onSearch }) {
     onSearch(searchInput.current.value);
     searchInput.current.focus();
   };
+
   return (
     <div className="search_bar">
       <input

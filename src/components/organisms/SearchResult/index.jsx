@@ -1,5 +1,6 @@
 import React from 'react';
-import { SearchResultDescription, SearchResultList } from '@molecules';
+import SearchResultDescription from '@molecules/SearchResultDescription';
+import SearchResultList from '@molecules/SearchResultList';
 import './style.scss';
 
 export default function SearchResult({
