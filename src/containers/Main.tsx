@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Main: React.FC<Props> = (props) => {
-  const [state, onChange] = useInput({ username: "" });
+  const { state, onChange } = useInput({ username: "" });
 
   const { username } = state;
 
