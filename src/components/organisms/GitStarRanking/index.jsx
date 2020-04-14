@@ -3,6 +3,7 @@ import Spinner from '@atoms/Spinner';
 import NotFound from '@atoms/NotFound';
 import SearchBar from '@molecules/SearchBar';
 import SearchResult from '@organisms/SearchResult';
+import './style.scss';
 
 import * as api from 'apis';
 import reducer, { Action, initialState } from './reducer';
@@ -39,7 +40,7 @@ export default function GitStarRanking() {
   };
 
   return (
-    <main>
+    <main className="gitstar_ranking">
       <h1>GitStar Ranking</h1>
       <p>
         Unofficial GitHub star ranking for users, organizations and

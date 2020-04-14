@@ -1,7 +1,12 @@
-h1 {
-  font-size: 4rem;
-}
+.gitstar_ranking {
+  & h1 {
+    font-size: 5rem;
+  }
 
-p {
-  font-weight: 100;
+  & p {
+    font-weight: 100;
+    font-size: 2rem;
+    line-height: 3rem;
+    text-align: center;
+  }
 }
