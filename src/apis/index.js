@@ -1,4 +1,8 @@
-import API from './APIutils';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://api.github.com';
+
+const API = axios;
 
 export function getRepos(keyword) {
   return API.get(`/users/${keyword}/repos`).then(({ data }) => {
