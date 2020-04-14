@@ -19,7 +19,7 @@ export function getRepos(keyword) {
     );
 
     return {
-      owner,
+      keyword: owner,
       repos,
     };
   });
