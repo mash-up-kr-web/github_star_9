@@ -1,0 +1,15 @@
+.search_bar {
+  & > * {
+    margin: 1rem;
+    font-weight: lighter;
+  }
+}
+
+input {
+  padding-left: 1rem;
+
+  font-size: 1.3rem;
+  height: 4rem;
+  width: 60vw;
+  border: 1px solid #d6cfcf;
+}

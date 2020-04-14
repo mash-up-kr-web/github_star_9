@@ -1,0 +1,25 @@
+.search_result_description {
+  & {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > .descript_name {
+    font-size: 2.5rem;
+  }
+
+  & > .descript_count_wrapper {
+    font-size: 1.5rem;
+    font-weight: lighter;
+    padding: 1rem 0;
+  }
+
+  & .repo_count {
+    padding-right: 1rem;
+    border-right: 1px solid;
+  }
+
+  & .star_count {
+    padding-left: 1rem;
+  }
+}
