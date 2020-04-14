@@ -35,7 +35,7 @@ export default function GitStarRanking() {
   };
 
   return (
-    <>
+    <main>
       <h1>GitStar Ranking</h1>
       <p>
         Unofficial GitHub star ranking for users, organizations and
@@ -49,6 +49,6 @@ export default function GitStarRanking() {
         repoCount={result.length}
         starCount={result.reduce((acc, cur) => acc + cur.starCount, 0)}
       />
-    </>
+    </main>
   );
 }

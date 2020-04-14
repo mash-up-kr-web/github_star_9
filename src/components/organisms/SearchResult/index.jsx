@@ -9,15 +9,15 @@ export default function SearchResult({
   starCount,
   resultItems,
 }) {
+  if (!resultItems.length) return null;
+
   return (
     <div className="search_result">
-      {name && (
-        <SearchResultDescription
-          name={name}
-          repoCount={repoCount}
-          starCount={starCount}
-        />
-      )}
+      <SearchResultDescription
+        name={name}
+        repoCount={repoCount}
+        starCount={starCount}
+      />
       <SearchResultList resultItems={resultItems} />
     </div>
   );
