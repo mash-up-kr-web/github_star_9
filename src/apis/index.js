@@ -9,7 +9,13 @@ export function getRepos(keyword) {
     const owner = data.length && data[0].owner.login;
 
     const repos = data.map(
-      ({ id, name, description, url, stargazers_count: starCount }) => ({
+      ({
+        id,
+        name,
+        description,
+        html_url: url,
+        stargazers_count: starCount,
+      }) => ({
         id,
         name,
         description,

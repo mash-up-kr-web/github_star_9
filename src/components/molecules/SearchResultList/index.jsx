@@ -6,9 +6,11 @@ export default function SearchResultList({ resultItems }) {
 
   return (
     <ul className="search_result">
-      {resultItems.map(({ id, ...props }) => (
+      {resultItems.map(({ id, url, ...props }) => (
         <li key={id}>
-          <SearchResultListItem {...props} id={id} />
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            <SearchResultListItem {...props} id={id} />
+          </a>
         </li>
       ))}
     </ul>
