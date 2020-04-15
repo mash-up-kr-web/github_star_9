@@ -1,5 +1,6 @@
 import React from 'react'
 import Item from '../../atoms/item/Item'
+import './ItemList.css'
 
 export default function ItemList(props) {
 
@@ -15,7 +16,7 @@ export default function ItemList(props) {
   )
 
   return (
-    <div>
+    <div className="itemList">
       {repos}
     </div>
   )

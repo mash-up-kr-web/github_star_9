@@ -14,7 +14,7 @@ export default function SearchBar(props) {
   }
   
   return (
-    <div>
+    <div className="SearchBar">
       <InputText placeholder={"검색할 Github User 또는 Organization의 이름을 입력해주세요!"} searchName={searchName} />
       <Button name="Search" onClick={() => getRepoInfo(searchName.current.value)}/>
     </div>

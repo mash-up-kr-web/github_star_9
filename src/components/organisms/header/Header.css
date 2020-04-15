@@ -1,0 +1,14 @@
+.Header {
+  background-color: lightgray;
+  margin: 1rem;
+  padding: 1rem;
+  
+}
+
+.Header h1 {
+  font-size: 3rem;
+}
+
+.Header p {
+  font-size: 1.5rem;
+}
