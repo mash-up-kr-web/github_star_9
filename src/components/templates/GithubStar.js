@@ -10,7 +10,7 @@ function GithubStar() {
   return (
     <div>
       <Header userName={userName} setUserName={setUserName} setRepoList={setRepoList}/>
-      <SearchResult repoList={repoList} userName={userName}/>
+      {!repoList.length ? null:(<SearchResult repoList={repoList} userName={userName}/>)}
     </div>
   );
 }

@@ -15,7 +15,6 @@ export const getRepoList = async(userName) => {
     }))
     return result;
   }).catch(e => {
-    console.log(e)
-    return;
+    return [];
   })
 }
