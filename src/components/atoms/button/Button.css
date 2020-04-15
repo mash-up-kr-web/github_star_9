@@ -3,9 +3,5 @@
   height: 3rem;
   width: 5rem;
   font-size: 1rem;
-  color: rgb(62, 64, 66);
-}
-
-.button:hover {
-  background-color: lightgray;
+  color: black;
 }
