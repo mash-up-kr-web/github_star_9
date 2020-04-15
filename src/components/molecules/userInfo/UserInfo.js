@@ -1,14 +1,16 @@
 import React from 'react'
+import './UserInfo.css'
 
 export default function UserInfo(props) {
   return (
-    <div>
-      <div>
+    <div className="userInfo">
+      <a className="nameinfo">
         {props.userName}
-      </div>
-      <div>
+      </a>
+      <br/>
+      <a className="repo">
         {props.repoCount} Repositories | {props.starCount} stars
-      </div>
+      </a>
     </div>
   )
 }
