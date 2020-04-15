@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import GithubStar from './components/templates/GithubStar';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GithubStar />
   </React.StrictMode>,
   document.getElementById('root')
 );
