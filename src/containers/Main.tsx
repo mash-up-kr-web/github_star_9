@@ -39,7 +39,7 @@ const Main: React.FC<Props> = (props) => {
     );
   }, [store.username, store.repoCount, store.totalStars]);
 
-  const handleSearch = useCallback(async () => {
+  const handleSearch = useCallback(() => {
     store.fetchData(username);
   }, [store, username]);
 
