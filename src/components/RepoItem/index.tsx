@@ -9,18 +9,18 @@ interface Props {
 }
 
 export const RepoItem: React.FC<Props> = (props) => {
-  const { html_url, full_name, stargazers_count } = props;
+  const { html_url: htmlUrl, full_name: fullName, stargazers_count: starCount } = props;
 
   const handleRedirect = useCallback(() => {
-    window.open(html_url);
-  }, [html_url]);
+    window.open(htmlUrl);
+  }, [htmlUrl]);
 
   return (
     <Wrapper onClick={handleRedirect}>
-      <UserName>{full_name}</UserName>
+      <UserName>{fullName}</UserName>
       <Star>
         <StarFilled />
-        <Rating>{stargazers_count}</Rating>
+        <Rating>{starCount}</Rating>
       </Star>
     </Wrapper>
   );
