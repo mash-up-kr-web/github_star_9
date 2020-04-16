@@ -5,11 +5,7 @@ import UserInfo from '../../molecules/userInfo/UserInfo'
 export default function SearchResult(props) {
 
   const starCount = (ItemList) => {
-    let sum = 0
-    ItemList.map(({starCount}) => {
-      sum += starCount
-    })
-    return sum
+   return ItemList.reduce((acc, {starCount}) =>  acc += starCount, 0);
   }
 
   return (
