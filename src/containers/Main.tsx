@@ -8,16 +8,20 @@ import { RepoItem } from '../components/RepoItem';
 import useInput from '../hooks/useInput';
 import Store from '../stores/store';
 
-interface Props {
+interface Props {}
+
+interface InjectedProps {
   store: Store;
 }
 
 const Main: React.FC<Props> = (props) => {
+  const injected = props as InjectedProps;
+
   const { state, onChange } = useInput({ username: "" });
 
   const { username } = state;
 
-  const { store } = props;
+  const { store } = injected;
 
   const repoItems = useMemo(() => {
     return store.data.map((el) => <RepoItem {...el} />);
