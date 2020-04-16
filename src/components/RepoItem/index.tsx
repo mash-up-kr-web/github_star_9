@@ -2,14 +2,12 @@ import { StarFilled } from '@ant-design/icons';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-interface Props {
-  html_url: string;
-  full_name: string;
-  stargazers_count: number;
-}
+import { RepoType } from '../../types';
+
+interface Props extends RepoType {}
 
 export const RepoItem: React.FC<Props> = (props) => {
-  const { html_url: htmlUrl, full_name: fullName, stargazers_count: starCount } = props;
+  const { htmlUrl, fullName, starCount } = props;
 
   const handleRedirect = useCallback(() => {
     window.open(htmlUrl);

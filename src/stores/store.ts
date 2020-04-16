@@ -2,13 +2,21 @@ import axios from 'axios';
 import { action, computed, flow, observable } from 'mobx';
 
 import config from '../config';
+import { RepoType } from '../types';
 
 const { API_SERVER_PATH } = config;
+
+type ResponseType = {
+  html_url: string;
+  full_name: string;
+  stargazers_count: number;
+  /* etc... */
+};
 
 export default class Store {
   public static NAME = "store";
 
-  @observable data = [];
+  @observable data: RepoType[] = [];
 
   @observable username: string = "";
 
@@ -18,13 +26,17 @@ export default class Store {
 
     if (response.status === 200) {
       this.username = username;
-      this.data = response.data;
+      this.data = response.data.map((el: ResponseType) => ({
+        htmlUrl: el.html_url,
+        fullName: el.full_name,
+        starCounts: el.stargazers_count
+      }));
     }
   });
 
   @computed
   get totalStars() {
-    return this.data.reduce((prev, next: any) => prev + next.stargazers_count, 0);
+    return this.data.reduce((prev, next: any) => prev + next.starCounts, 0);
   }
 
   @computed
