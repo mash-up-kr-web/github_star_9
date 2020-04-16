@@ -1,9 +1,9 @@
-import axios from "axios";
-import { action, computed, flow, observable } from "mobx";
+import axios from 'axios';
+import { action, computed, flow, observable } from 'mobx';
 
-import config from "../config";
+import config from '../config';
 
-const { APISERVERPATH } = config;
+const { API_SERVER_PATH } = config;
 
 export default class Store {
   public static NAME = "store";
@@ -14,7 +14,7 @@ export default class Store {
 
   @action
   fetchData = flow(function* (this: Store, username: string) {
-    const response = yield axios.get(`${APISERVERPATH}/users/${username}/repos`);
+    const response = yield axios.get(`${API_SERVER_PATH}/users/${username}/repos`);
 
     if (response.status === 200) {
       this.username = username;
