@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { RepoItem } from '../components/RepoItem';
+import { UserInfo } from '../components/UserInfo';
 import useInput from '../hooks/useInput';
 import Store from '../stores/store';
 
@@ -27,18 +28,6 @@ const Main: React.FC<Props> = (props) => {
     return store.data.map((el) => <RepoItem {...el} />);
   }, [store.data]);
 
-  const userInfo = useMemo(() => {
-    return (
-      store.username && (
-        <UserInfo>
-          <UserName>{store.username}</UserName>
-          <Count>{store.repoCount} Repositories</Count>
-          <Count>{store.totalStars} Stars</Count>
-        </UserInfo>
-      )
-    );
-  }, [store.username, store.repoCount, store.totalStars]);
-
   const handleSearch = useCallback(() => {
     store.fetchData(username);
   }, [store, username]);
@@ -60,7 +49,7 @@ const Main: React.FC<Props> = (props) => {
         <Input onChange={onChange} name="username" onKeyUp={handleKeyUp} />
         <StyledButton onClick={handleSearch}>Search</StyledButton>
       </Header>
-      {userInfo}
+      <UserInfo userName={store.username} repoCount={store.repoCount} totalStars={store.totalStars} />
       <RepoItems>{repoItems}</RepoItems>
     </Container>
   );
@@ -87,29 +76,6 @@ const Description = styled.p`
 
 const StyledButton = styled(Button)`
   margin-left: 20px;
-`;
-
-const UserInfo = styled.div`
-  padding: 12px 0px;
-  border-bottom: 1px solid #ced4da;
-  margin-bottom: 24px;
-`;
-
-const UserName = styled(Title)`
-  font-size: 42px;
-  margin: 0;
-`;
-
-const Count = styled.span`
-  font-weight: 400;
-  color: #343a40;
-  font-size: 24px;
-  padding-right: 12px;
-
-  & + span {
-    border-left: 2px solid #343a40;
-    padding-left: 12px;
-  }
 `;
 
 const RepoItems = styled.div``;
