@@ -1,11 +1,13 @@
-import axios from 'axios';
-import { action, computed, flow, observable } from 'mobx';
+import axios from "axios";
+import { action, computed, flow, observable } from "mobx";
 
-import config from '../config';
+import config from "../config";
 
 const { APISERVERPATH } = config;
 
 export default class Store {
+  public static NAME = "store";
+
   @observable data = [];
 
   @observable username: string = "";

@@ -110,4 +110,4 @@ const Count = styled.span`
 
 const RepoItems = styled.div``;
 
-export default inject("store")(observer(Main));
+export default inject(Store.NAME)(observer(Main));
