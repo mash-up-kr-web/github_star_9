@@ -11,12 +11,12 @@ import { UserInfo } from '~/model';
 import LoadingSpinner from '~/components/common/LoadingSpinner';
 import NotFound from '~/components/common/NotFound';
 
+import BeautifulTitle from '~/components/search/BeautifulTitle';
+import SearchKeywordBox from '~/components/search/SearchKeywordBox';
+import SearchResult from '~/components/search/SearchResult';
+
 import PageStatusProvider, { PageStatus, PageStatusContext } from '~/contexts/PageStatus';
 import UserInfoProvider, { UserInfoContext } from '~/contexts/UserInfo';
-
-import BeautifulTitle from '../../components/search/BeautifulTitle';
-import SearchKeywordBox from '../../components/search/SearchKeywordBox';
-import SearchResult from '../../components/search/SearchResult';
 
 interface SearchPageHeaderProps {
   search: (username: string) => void;
