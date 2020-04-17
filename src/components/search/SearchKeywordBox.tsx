@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Button from '~/components/common/Button';
 import Input from '~/components/common/Input';
 
+import { isEnterKeyPressed } from '~/utils/etc';
+
 /* Style */
 const SearchKeywordBoxLayout = styled.div`
   display: flex;
@@ -31,7 +33,7 @@ const SearchKeywordBox: React.FC<SearchKeywordBoxProps> = ({ search, initialKeyw
   };
 
   const handleInputKeyEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.keyCode !== 13) return;
+    if (!isEnterKeyPressed(e)) return;
     search(keyword);
   };
 
