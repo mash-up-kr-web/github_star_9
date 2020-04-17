@@ -7,7 +7,7 @@ const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/search" component={SearchPage} />
+        <Route exact path="/" component={SearchPage} />
       </Switch>
     </BrowserRouter>
   );
