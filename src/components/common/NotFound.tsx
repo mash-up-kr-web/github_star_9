@@ -6,8 +6,12 @@ const StyledNotFound = styled.div`
   font-weight: lighter;
 `;
 
-const NotFound: React.FC<{ className: string }> = ({ className }) => {
-  return <StyledNotFound className={className}>Not Found</StyledNotFound>;
+interface NotFoundProps {
+  className: string;
+}
+
+const NotFound: React.FC<NotFoundProps> = (props) => {
+  return <StyledNotFound {...props}>Not Found</StyledNotFound>;
 };
 
 export default NotFound;
