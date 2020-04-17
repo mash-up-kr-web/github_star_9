@@ -25,8 +25,8 @@ interface SearchKeywordBoxProps {
 
 const ButtonMemo = React.memo(Button);
 
-const SearchKeywordBox: React.FC<SearchKeywordBoxProps> = ({ search, initialKeyword }) => {
-  const [keyword, setKeyword] = useState<string>(initialKeyword);
+const SearchKeywordBox: React.FC<SearchKeywordBoxProps> = ({ search, initialKeyword = '' }) => {
+  const [keyword, setKeyword] = useState(initialKeyword);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
