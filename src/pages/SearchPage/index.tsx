@@ -55,13 +55,13 @@ const SearchPage: React.FC<{}> = () => {
   const { pageStatus, chagePageStatus } = useContext(PageStatusContext);
   const { userInfo, searchUsefInfo } = useContext(UserInfoContext);
 
-  const { moveTop, checkHasBeenSearched, startFromTop, queryString } = usePageManipulation(pageStatus);
+  const { moveTop, checkScrolledToTop, startFromTop, queryString } = usePageManipulation(pageStatus);
 
   const search = useCallback(
     async (username: string) => {
       chagePageStatus(PageStatus.Loading);
 
-      checkHasBeenSearched();
+      checkScrolledToTop();
 
       await delay(1000);
 
@@ -73,7 +73,7 @@ const SearchPage: React.FC<{}> = () => {
         chagePageStatus(PageStatus.Error);
       }
     },
-    [chagePageStatus, searchUsefInfo, checkHasBeenSearched],
+    [chagePageStatus, searchUsefInfo, checkScrolledToTop],
   );
 
   const historyPushForSearchUserInfo = useHistoryEvent(search, chagePageStatus);

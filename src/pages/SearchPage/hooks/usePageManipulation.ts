@@ -11,7 +11,7 @@ const usePageManipulation = (pageStatus: PageStatus) => {
 
   const [moveTop, setMoveTop] = useState<boolean>(pageStatus !== PageStatus.Initial);
 
-  const checkHasBeenSearched = () => {
+  const checkScrolledToTop = () => {
     if (!moveTop) {
       setMoveTop(true);
     }
@@ -21,7 +21,7 @@ const usePageManipulation = (pageStatus: PageStatus) => {
     setMoveTop(pageStatus !== PageStatus.Initial);
   }, [pageStatus]);
 
-  return { queryString, moveTop, startFromTop, checkHasBeenSearched };
+  return { queryString, moveTop, startFromTop, checkScrolledToTop };
 };
 
 export default usePageManipulation;
