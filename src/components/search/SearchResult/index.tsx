@@ -7,7 +7,7 @@ import { UserInfo, Repository } from '~/model';
 
 /* Props */
 interface SearchResultProps {
-  userInfo?: UserInfo;
+  userInfo: UserInfo;
 }
 
 /* Components */
@@ -37,8 +37,6 @@ const RepositoryList: React.FC<{ repositories: Repository[] }> = ({ repositories
 };
 
 const SearchResult: React.FC<SearchResultProps> = ({ userInfo }) => {
-  if (!userInfo) return null;
-
   const { username, repositories, starCount } = userInfo;
 
   return (
