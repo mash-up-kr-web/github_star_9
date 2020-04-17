@@ -12,7 +12,7 @@ const UserMetadata = styled.div`
     font-size: 5rem;
   }
 
-  .user-repo-stars {
+  .repo-star-count {
     font-size: 2rem;
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 import Styled from './style';
@@ -39,13 +39,19 @@ const RepositoryList: React.FC<{ repositories: Repository[] }> = ({ repositories
 const SearchResult: React.FC<SearchResultProps> = ({ userInfo }) => {
   const { username, repositories, starCount } = userInfo;
 
+  const phraseRepoAndStar = useMemo(() => {
+    const repoCount = repositories.length;
+
+    return `${repoCount} ${repoCount > 1 ? 'Repositories' : 'Repository'} / ${starCount} ${
+      starCount > 1 ? 'Stars' : 'Star'
+    }`;
+  }, [repositories, starCount]);
+
   return (
     <section>
       <Styled.UserMetadata>
         <div className="user-name">{username}</div>
-        <div className="user-repo-stars">
-          {repositories.length} Repositories / {starCount} stars
-        </div>
+        <div className="repo-star-count">{phraseRepoAndStar}</div>
       </Styled.UserMetadata>
       <RepositoryList repositories={repositories} />
     </section>
