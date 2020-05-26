@@ -14,7 +14,14 @@ type ResponseType = {
 };
 
 export default class Store {
-  public static NAME = "store";
+  static instance: Store | null = null;
+
+  public static getInstance() {
+    if (Store.instance === null) {
+      Store.instance = new Store();
+    }
+    return Store.instance;
+  }
 
   @observable data: RepoType[] = [];
 

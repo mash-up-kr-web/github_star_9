@@ -1,4 +1,3 @@
-import { inject, observer } from 'mobx-react';
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 
@@ -9,20 +8,16 @@ import { UserInfo } from '../components/UserInfo';
 import useInput from '../hooks/useInput';
 import Store from '../stores/store';
 
-interface Props {}
+const ENTER = 13;
 
-interface InjectedProps {
-  store: Store;
-}
-
-const Main: React.FC<Props> = (props) => {
-  const injected = props as InjectedProps;
+const Main = () => {
+  const store = useMemo(() => {
+    return Store.getInstance();
+  }, []);
 
   const { state, onChange } = useInput({ username: "" });
 
   const { username } = state;
-
-  const { store } = injected;
 
   const repoItems = useMemo(() => {
     return store.data.map((el) => <RepoItem {...el} />);
@@ -34,7 +29,7 @@ const Main: React.FC<Props> = (props) => {
 
   const handleKeyUp = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.keyCode === 13) {
+      if (e.keyCode === ENTER) {
         handleSearch();
       }
     },
@@ -80,4 +75,4 @@ const StyledButton = styled(Button)`
 
 const RepoItems = styled.div``;
 
-export default inject(Store.NAME)(observer(Main));
+export default Main;
