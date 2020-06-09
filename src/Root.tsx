@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Main from './containers/Main';
+import Main from "./containers/Main";
 
-const Root: React.FC = () => <Main />;
+const Root = () => <Main />;
 
 export default Root;
