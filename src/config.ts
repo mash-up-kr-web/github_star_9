@@ -1,5 +1,5 @@
 const config = {
-   API_SERVER_PATH: "https://api.github.com",
+  API_SERVER_PATH: "https://api.github.com",
 };
 
 export default config;
