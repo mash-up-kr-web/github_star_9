@@ -17,11 +17,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write --config ./.prettierrc './**/*.{js,jsx,ts,tsx}'",
-      "git add ."
-    ],
-    "*.{ts,tsx}": [
-      "tslint --fix",
-      "git add ."
+      "git add"
     ]
   },
   "dependencies": {
