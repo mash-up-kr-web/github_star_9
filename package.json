@@ -47,12 +47,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "prettier --write --config ./.prettierrc './**/*.{js,jsx,ts,tsx}'"
         }
-    },
-    "lint-staged": {
-        "./src/*.{js,jsx,ts,tsx}": [
-            "prettier --write --config ./.prettierrc"
-        ]
     }
 }
