@@ -1,8 +1,8 @@
-import { StarFilled } from '@ant-design/icons';
-import React, { useCallback } from 'react';
-import styled from 'styled-components';
+import { StarFilled } from "@ant-design/icons";
+import React, { useCallback } from "react";
+import styled from "styled-components";
 
-import { RepoType } from '../../types';
+import { RepoType } from "../../types";
 
 interface Props extends RepoType {}
 

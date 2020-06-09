@@ -1,12 +1,12 @@
-import React, { useCallback, useMemo } from 'react';
-import styled from 'styled-components';
+import React, { useCallback, useMemo } from "react";
+import styled from "styled-components";
 
-import { Button } from '../components/Button';
-import { Input } from '../components/Input';
-import { RepoItem } from '../components/RepoItem';
-import { UserInfo } from '../components/UserInfo';
-import useInput from '../hooks/useInput';
-import Store from '../stores/store';
+import { Button } from "../components/Button";
+import { Input } from "../components/Input";
+import { RepoItem } from "../components/RepoItem";
+import { UserInfo } from "../components/UserInfo";
+import useInput from "../hooks/useInput";
+import Store from "../stores/store";
 
 const ENTER = 13;
 
@@ -33,7 +33,7 @@ const Main = () => {
         handleSearch();
       }
     },
-    [handleSearch]
+    [handleSearch],
   );
 
   return (

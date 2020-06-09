@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { action, computed, flow, observable } from 'mobx';
+import axios from "axios";
+import { action, computed, flow, observable } from "mobx";
 
-import config from '../config';
-import { RepoType } from '../types';
+import config from "../config";
+import { RepoType } from "../types";
 
 const { API_SERVER_PATH } = config;
 
@@ -36,7 +36,7 @@ export default class Store {
       this.data = response.data.map((el: ResponseType) => ({
         htmlUrl: el.html_url,
         fullName: el.full_name,
-        starCounts: el.stargazers_count
+        starCounts: el.stargazers_count,
       }));
     }
   });

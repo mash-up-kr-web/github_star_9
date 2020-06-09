@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 interface State {
   [key: string]: string;
@@ -10,7 +10,7 @@ export default function useInput(initialForm: State) {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 

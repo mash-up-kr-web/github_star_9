@@ -1,10 +1,10 @@
-import './index.css';
+import "./index.css";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import Root from './Root';
-import * as serviceWorker from './serviceWorker';
+import Root from "./Root";
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(<Root />, document.getElementById("root"));
 
