@@ -16,7 +16,7 @@
    },
    "lint-staged": {
       "*.{js,jsx,ts,tsx,css,scss,md}": [
-         "prettier --write --config ./.prettierrc './**/*.{js,jsx,ts,tsx}'",
+         "prettier --write --loglevel warn",
          "git add"
       ],
       "*.{ts,tsx}": [
